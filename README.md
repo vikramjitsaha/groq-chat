@@ -33,6 +33,7 @@ Build a <b>Chatbot App</b> with Python, Streamlit, and Groq.
 
 5. Run the app:
    `streamlit run app.py`
+   `streamlit run app.py --server.port 8888`
 
 
 

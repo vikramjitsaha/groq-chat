@@ -3,12 +3,19 @@ import streamlit as st
 from groq import Groq
 import httpx
 import ssl
+import os
+from dotenv import load_dotenv
 
+
+# Load Environment Variables
+load_dotenv()
 
 # A simple check:
-groq_key = st.secrets.get("GROQ_API_KEY")
+# groq_key = st.secrets.get("GROQ_API_KEY")
+groq_key = os.environ.get("GROQ_API_KEY")
+
 if not groq_key:
-    st.error("GROQ_API_KEY is missing from st.secrets!")
+    st.error("GROQ_API_KEY is missing!")
 
 # creates groq client with custom httpx client
 ssl_context = ssl.create_default_context()
@@ -16,10 +23,10 @@ ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
 
 http_client = httpx.Client(verify=False)  # WARNING: Disabling SSL verification for testing
-client = Groq(api_key=st.secrets.get("GROQ_API_KEY"), http_client=http_client)
+client = Groq(api_key=groq_key, http_client=http_client)
 
 # Page Header
-st.title("Chatbot")
+st.title("Vikram's Chatbot")
 st.write("Chatbot powered by Groq.")
 st.divider()
 
@@ -85,7 +92,7 @@ if prompt := st.chat_input():
             print(f"Connection error: {e}")
         except groq.AuthenticationError as e:
             st.error(
-                "Authentication error: Invalid API key. Please check your GROQ_API_KEY in secrets.toml")
+                "Authentication error: Invalid API key. Please check your GROQ_API_KEY.")
             print(f"Authentication error: {e}")
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
