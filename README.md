@@ -1,10 +1,8 @@
 
 # Chatbot with Streamlit and Groq
 
-![Chatbot Playground](<./AI%20Stocks%20Application%20(10).png>)
-
 ## Live Project Link
-<a href="https://abetavarez-groq-chatbot.streamlit.app/" target="_blank">View Live Project</a>
+<a href="https://vikram-groq-chat.onrender.com/" target="_blank">View Live Project</a>
 
 ## Description 
 
